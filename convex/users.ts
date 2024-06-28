@@ -101,18 +101,18 @@ export const updateUser = internalMutation({
   },
 });
 
-// export const deleteUser = internalMutation({
-//   args: { clerkId: v.string() },
-//   async handler(ctx, args) {
-//     const user = await ctx.db
-//       .query("users")
-//       .filter((q) => q.eq(q.field("clerkId"), args.clerkId))
-//       .unique();
+export const deleteUser = internalMutation({
+  args: { clerkId: v.string() },
+  async handler(ctx, args) {
+    const user = await ctx.db
+      .query("users")
+      .filter((q) => q.eq(q.field("clerkId"), args.clerkId))
+      .unique();
 
-//     if (!user) {
-//       throw new ConvexError("User not found");
-//     }
+    if (!user) {
+      throw new ConvexError("User not found");
+    }
 
-//     await ctx.db.delete(user._id);
-//   },
-// });
+    await ctx.db.delete(user._id);
+  },
+});
