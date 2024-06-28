@@ -1,9 +1,5 @@
 const RightSidebar = () => {
-  return (
-    <section>
-      <nav></nav>
-    </section>
-  );
+  return <div>RightSidebar</div>;
 };
 
 export default RightSidebar;
