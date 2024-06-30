@@ -30,6 +30,7 @@ import { Textarea } from "@/components/ui/textarea";
 import GeneratePodcast from "@/components/shared/GeneratePodcast";
 import GenerateThumbnail from "@/components/shared/GenerateThumbnail";
 import { Loader } from "lucide-react";
+import { Id } from "@/convex/_generated/dataModel";
 
 const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
 
@@ -38,7 +39,25 @@ const formSchema = z.object({
 });
 
 const CreatePodcast = () => {
+  // Image States
+  const [imagePrompt, setImagePrompt] = useState("");
+  const [imageStorageId, setImageStorageId] = useState<Id<"_storage"> | null>(
+    null
+  );
+  const [imageUrl, setImageUrl] = useState("");
+
+  // Audio States
+  const [audioUrl, setAudioUrl] = useState("");
+  const [audioStorageId, setAudioStorageId] = useState<Id<"_storage"> | null>(
+    null
+  );
+  const [audioDuration, setAudioDuration] = useState(0);
+
+  // Voice States
   const [voiceType, setVoiceType] = useState<string | null>(null);
+  const [voicePrompt, setVoicePrompt] = useState("");
+
+  // Submit State
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 1. Define your form.
