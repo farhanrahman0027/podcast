@@ -99,7 +99,7 @@ const CreatePodcast = () => {
                     <Input
                       placeholder="Saul Kurosaki Pro Podcast"
                       {...field}
-                      className="input-class focus-visible:ring-orange-1"
+                      className="input-class focus-visible:ring-offset-orange-1"
                     />
                   </FormControl>
                   <FormMessage className="text-white-1" />
@@ -115,7 +115,7 @@ const CreatePodcast = () => {
               <Select onValueChange={(value) => setVoiceType(value)}>
                 <SelectTrigger
                   className={cn(
-                    "text-16 w-full border-none bg-black-1 text-gray-1"
+                    "text-16 w-full border-none bg-black-1 text-gray-1 focus-visible:ring-offset-orange-1"
                   )}
                 >
                   <SelectValue
@@ -156,7 +156,7 @@ const CreatePodcast = () => {
                     <Textarea
                       placeholder="Write a short podcast description"
                       {...field}
-                      className="input-class focus-visible:ring-orange-1"
+                      className="input-class focus-visible:ring-offset-orange-1"
                     />
                   </FormControl>
                   <FormMessage className="text-white-1" />
