@@ -27,6 +27,8 @@ import {
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
+import GeneratePodcast from "@/components/shared/GeneratePodcast";
+import GenerateThumbnail from "@/components/shared/GenerateThumbnail";
 
 const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"];
 
@@ -138,6 +140,12 @@ const CreatePodcast = () => {
                 </FormItem>
               )}
             />
+          </div>
+
+          <div className="flex flex-col pt-10">
+            <GeneratePodcast />
+
+            <GenerateThumbnail />
           </div>
         </form>
       </Form>
