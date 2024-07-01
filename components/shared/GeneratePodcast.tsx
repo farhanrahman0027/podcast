@@ -7,16 +7,17 @@ import { Button } from "../ui/button";
 import { Loader } from "lucide-react";
 import { useState } from "react";
 
-const GeneratePodcast = ({
-  setAudioStorageId,
-  setAudio,
-  voiceType,
-  audio,
-  voicePrompt,
-  setVoicePrompt,
-  setAudioDuration,
-}: GeneratePodcastProps) => {
-  const [isGenerating, setIsGenerating] = useState(false);
+const useGeneratePodcast = (props: GeneratePodcastProps) => {
+  // Logic for podcast generation
+
+  return {
+    isGenerating: false,
+    generatePodcast: () => {},
+  };
+};
+
+const GeneratePodcast = (props: GeneratePodcastProps) => {
+  const { isGenerating, generatePodcast } = useGeneratePodcast(props);
 
   return (
     <div>
@@ -28,8 +29,8 @@ const GeneratePodcast = ({
           className="input-class font-light focus-visible:ring-offset-orange-1"
           placeholder="Provide text to generate audio"
           rows={5}
-          value={voicePrompt}
-          onChange={(e) => setVoicePrompt(e.target.value)}
+          value={props.voicePrompt}
+          onChange={(e) => props.setVoicePrompt(e.target.value)}
         />
       </div>
 
@@ -49,13 +50,15 @@ const GeneratePodcast = ({
         </Button>
       </div>
 
-      {audio && (
+      {props.audio && (
         <audio
           controls
-          src={audio}
+          src={props.audio}
           autoPlay
           className="mt-5"
-          onLoadedMetadata={(e) => setAudioDuration(e.currentTarget.duration)}
+          onLoadedMetadata={(e) =>
+            props.setAudioDuration(e.currentTarget.duration)
+          }
         />
       )}
     </div>
