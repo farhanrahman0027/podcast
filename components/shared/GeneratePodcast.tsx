@@ -1,6 +1,11 @@
+"use client";
+
 import { GeneratePodcastProps } from "@/types";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import { Button } from "../ui/button";
+import { Loader } from "lucide-react";
+import { useState } from "react";
 
 const GeneratePodcast = ({
   setAudioStorageId,
@@ -11,6 +16,8 @@ const GeneratePodcast = ({
   setVoicePrompt,
   setAudioDuration,
 }: GeneratePodcastProps) => {
+  const [isGenerating, setIsGenerating] = useState(false);
+
   return (
     <div>
       <div className="flex flex-col gap-2.5">
@@ -24,6 +31,22 @@ const GeneratePodcast = ({
           value={voicePrompt}
           onChange={(e) => setVoicePrompt(e.target.value)}
         />
+      </div>
+
+      <div className="mt-5 w-full max-w-[200px]">
+        <Button
+          type="submit"
+          className="text-16 w- bg-orange-1 py-4 font-bold text-white-1"
+        >
+          {isGenerating ? (
+            <>
+              Generating
+              <Loader size={20} className="animate-spin ml-2" />
+            </>
+          ) : (
+            "Generate"
+          )}
+        </Button>
       </div>
     </div>
   );
