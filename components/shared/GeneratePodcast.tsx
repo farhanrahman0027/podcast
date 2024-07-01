@@ -48,6 +48,16 @@ const GeneratePodcast = ({
           )}
         </Button>
       </div>
+
+      {audio && (
+        <audio
+          controls
+          src={audio}
+          autoPlay
+          className="mt-5"
+          onLoadedMetadata={(e) => setAudioDuration(e.currentTarget.duration)}
+        />
+      )}
     </div>
   );
 };
