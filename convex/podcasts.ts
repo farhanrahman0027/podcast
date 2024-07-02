@@ -169,22 +169,22 @@ export const getPodcastBySearch = query({
 });
 
 // this mutation will update the views of the podcast.
-// export const updatePodcastViews = mutation({
-//   args: {
-//     podcastId: v.id("podcasts"),
-//   },
-//   handler: async (ctx, args) => {
-//     const podcast = await ctx.db.get(args.podcastId);
+export const updatePodcastViews = mutation({
+  args: {
+    podcastId: v.id("podcasts"),
+  },
+  handler: async (ctx, args) => {
+    const podcast = await ctx.db.get(args.podcastId);
 
-//     if (!podcast) {
-//       throw new ConvexError("Podcast not found");
-//     }
+    if (!podcast) {
+      throw new ConvexError("Podcast not found");
+    }
 
-//     return await ctx.db.patch(args.podcastId, {
-//       views: podcast.views + 1,
-//     });
-//   },
-// });
+    return await ctx.db.patch(args.podcastId, {
+      views: podcast.views + 1,
+    });
+  },
+});
 
 // this mutation will delete the podcast.
 // export const deletePodcast = mutation({
