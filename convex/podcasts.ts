@@ -84,11 +84,11 @@ export const getPodcastByVoiceType = query({
 });
 
 // this query will get all the podcasts.
-// export const getAllPodcasts = query({
-//   handler: async (ctx) => {
-//     return await ctx.db.query("podcasts").order("desc").collect();
-//   },
-// });
+export const getAllPodcasts = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("podcasts").order("desc").collect();
+  },
+});
 
 // this query will get the podcast by the podcastId.
 // export const getPodcastById = query({
