@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { generateUploadUrl } from "@/convex/files";
 
 import { useUploadFiles } from "@xixixao/uploadstuff/react";
+import { toast } from "../ui/use-toast";
 
 const useGeneratePodcast = ({
   setAudio,
@@ -33,7 +34,9 @@ const useGeneratePodcast = ({
     setAudio("");
 
     if (!voicePrompt) {
-      // todo: show error message
+      toast({
+        title: "Please provide a voiceType to generate a podcast",
+      });
       return setIsGenerating(false);
     }
 
@@ -56,10 +59,16 @@ const useGeneratePodcast = ({
       setAudio(audioUrl!);
 
       setIsGenerating(false);
-      // todo: show success message
+
+      toast({
+        title: "Podcast generated successfully",
+      });
     } catch (error) {
       console.log("Error generating podcast", error);
-      // todo: show error message
+      toast({
+        title: "Error creating a podcast",
+        variant: "destructive",
+      });
       setIsGenerating(false);
     }
   };
