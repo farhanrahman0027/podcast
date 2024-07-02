@@ -54,34 +54,34 @@ export const createPodcast = mutation({
 });
 
 // this mutation is required to generate the url after uploading the file to the storage.
-// export const getUrl = mutation({
-//   args: {
-//     storageId: v.id("_storage"),
-//   },
-//   handler: async (ctx, args) => {
-//     return await ctx.storage.getUrl(args.storageId);
-//   },
-// });
+export const getUrl = mutation({
+  args: {
+    storageId: v.id("_storage"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.storage.getUrl(args.storageId);
+  },
+});
 
 // this query will get all the podcasts based on the voiceType of the podcast , which we are showing in the Similar Podcasts section.
-// export const getPodcastByVoiceType = query({
-//   args: {
-//     podcastId: v.id("podcasts"),
-//   },
-//   handler: async (ctx, args) => {
-//     const podcast = await ctx.db.get(args.podcastId);
+export const getPodcastByVoiceType = query({
+  args: {
+    podcastId: v.id("podcasts"),
+  },
+  handler: async (ctx, args) => {
+    const podcast = await ctx.db.get(args.podcastId);
 
-//     return await ctx.db
-//       .query("podcasts")
-//       .filter((q) =>
-//         q.and(
-//           q.eq(q.field("voiceType"), podcast?.voiceType),
-//           q.neq(q.field("_id"), args.podcastId)
-//         )
-//       )
-//       .collect();
-//   },
-// });
+    return await ctx.db
+      .query("podcasts")
+      .filter((q) =>
+        q.and(
+          q.eq(q.field("voiceType"), podcast?.voiceType),
+          q.neq(q.field("_id"), args.podcastId)
+        )
+      )
+      .collect();
+  },
+});
 
 // this query will get all the podcasts.
 // export const getAllPodcasts = query({
