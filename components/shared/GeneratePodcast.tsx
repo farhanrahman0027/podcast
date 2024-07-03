@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { generateUploadUrl } from "@/convex/files";
 
 import { useUploadFiles } from "@xixixao/uploadstuff/react";
-import { toast } from "../ui/use-toast";
+import { toast, useToast } from "../ui/use-toast";
 
 const useGeneratePodcast = ({
   setAudio,
@@ -21,6 +21,7 @@ const useGeneratePodcast = ({
   setAudioStorageId,
 }: GeneratePodcastProps) => {
   const [isGenerating, setIsGenerating] = useState(false);
+  const { toast } = useToast();
 
   const generateUploadUrl = useMutation(api.files.generateUploadUrl);
   const { startUpload } = useUploadFiles(generateUploadUrl);
@@ -57,9 +58,7 @@ const useGeneratePodcast = ({
 
       const audioUrl = await getAudioUrl({ storageId });
       setAudio(audioUrl!);
-
       setIsGenerating(false);
-
       toast({
         title: "Podcast generated successfully",
       });
@@ -73,10 +72,7 @@ const useGeneratePodcast = ({
     }
   };
 
-  return {
-    isGenerating,
-    generatePodcast,
-  };
+  return { isGenerating, generatePodcast };
 };
 
 const GeneratePodcast = (props: GeneratePodcastProps) => {
@@ -101,6 +97,7 @@ const GeneratePodcast = (props: GeneratePodcastProps) => {
         <Button
           type="submit"
           className="text-16 w- bg-orange-1 py-4 font-bold text-white-1"
+          onClick={generatePodcast}
         >
           {isGenerating ? (
             <>
