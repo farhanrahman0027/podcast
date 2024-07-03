@@ -42,7 +42,7 @@ const GenerateThumbnail = ({
 
       {isAiThumbnail ? (
         <div>
-          {/* <div className="flex flex-col gap-2.5">
+          <div className="flex flex-col gap-2.5">
             <Label className="text-16 font-bold text-white-1">
               Ai Prompt to generate Podcast
             </Label>
@@ -53,7 +53,7 @@ const GenerateThumbnail = ({
               value={imagePrompt}
               onChange={(e) => setImagePrompt(e.target.value)}
             />
-          </div> */}
+          </div>
 
           {/* <div className="mt-5 w-full max-w-[200px]">
             <Button
