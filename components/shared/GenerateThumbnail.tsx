@@ -1,10 +1,13 @@
-import { useState } from "react";
+"use client";
+
+import { useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Loader } from "lucide-react";
 import { GenerateThumbnailProps } from "@/types";
+import { Input } from "../ui/input";
 
 const GenerateThumbnail = ({
   setImage,
@@ -14,7 +17,8 @@ const GenerateThumbnail = ({
   setImagePrompt,
 }: GenerateThumbnailProps) => {
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
+  const imageRef = useRef<HTMLInputElement>(null);
 
   const generateImage = async () => {};
 
@@ -61,7 +65,7 @@ const GenerateThumbnail = ({
               className="text-16 w- bg-orange-1 py-4 font-bold text-white-1"
               onClick={generateImage}
             >
-              {isGenerating ? (
+              {isImageLoading ? (
                 <>
                   Generating
                   <Loader size={20} className="animate-spin ml-2" />
@@ -73,7 +77,9 @@ const GenerateThumbnail = ({
           </div>
         </div>
       ) : (
-        <div></div>
+        <div className="image_div" onClick={() => imageRef?.current?.click()}>
+          <Input type="file" className="hidden" ref={imageRef} />
+        </div>
       )}
     </>
   );
