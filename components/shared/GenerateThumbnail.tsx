@@ -1,5 +1,9 @@
 const GenerateThumbnail = () => {
-  return <div>GenerateThumbnail</div>;
+  return (
+    <>
+      <div className="generate_thumbnail"></div>
+    </>
+  );
 };
 
 export default GenerateThumbnail;
