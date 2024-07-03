@@ -9,6 +9,10 @@ import { Loader } from "lucide-react";
 import { GenerateThumbnailProps } from "@/types";
 import { Input } from "../ui/input";
 import Image from "next/image";
+import { useToast } from "../ui/use-toast";
+import { useMutation } from "convex/react";
+import { useUploadFiles } from "@xixixao/uploadstuff/react";
+import { api } from "@/convex/_generated/api";
 
 const GenerateThumbnail = ({
   setImage,
@@ -20,8 +24,40 @@ const GenerateThumbnail = ({
   const [isAiThumbnail, setIsAiThumbnail] = useState(false);
   const [isImageLoading, setIsImageLoading] = useState(false);
   const imageRef = useRef<HTMLInputElement>(null);
+  const { toast } = useToast();
+  const generateUploadUrl = useMutation(api.files.generateUploadUrl);
+  const { startUpload } = useUploadFiles(generateUploadUrl);
+  const getImageUrl = useMutation(api.podcasts.getUrl);
 
+  const handleImage = async (blob: Blob, fileName: string) => {
+    setIsImageLoading(true);
+    setImage("");
+
+    try {
+      const file = new File([blob], fileName, { type: "image/png" });
+
+      const uploaded = await startUpload([file]);
+      const storageId = (uploaded[0].response as any).storageId;
+
+      setImageStorageId(storageId);
+
+      const imageUrl = await getImageUrl({ storageId });
+      setImage(imageUrl!);
+      setIsImageLoading(false);
+
+      toast({
+        title: "Thumbnail generated successfully",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Error generating thumbnail",
+        variant: "destructive",
+      });
+    }
+  };
   const generateImage = async () => {};
+  const uploadImage = async (e: React.ChangeEvent<HTMLInputElement>) => {};
 
   return (
     <>
@@ -79,7 +115,12 @@ const GenerateThumbnail = ({
         </div>
       ) : (
         <div className="image_div" onClick={() => imageRef?.current?.click()}>
-          <Input type="file" className="hidden" ref={imageRef} />
+          <Input
+            type="file"
+            className="hidden"
+            ref={imageRef}
+            onChange={(e) => uploadImage(e)}
+          />
 
           {!isImageLoading ? (
             <Image
@@ -101,6 +142,18 @@ const GenerateThumbnail = ({
               SVG, PNG, JPG or GIF (max 1080x1080px)
             </p>
           </div>
+        </div>
+      )}
+
+      {image && (
+        <div className="flex-center w-full">
+          <Image
+            src={image}
+            alt="thumbnail"
+            width={200}
+            height={200}
+            className="mt-5"
+          />
         </div>
       )}
     </>
