@@ -7,6 +7,10 @@ const GenerateThumbnail = () => {
         <Button type="button" variant="plain" className="bg-black-6">
           Use AI to generate thumbnail
         </Button>
+
+        <Button type="button" variant="plain" className="bg-black-6">
+          Upload custom image
+        </Button>
       </div>
     </>
   );
