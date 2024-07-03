@@ -55,7 +55,7 @@ const GenerateThumbnail = ({
             />
           </div>
 
-          {/* <div className="mt-5 w-full max-w-[200px]">
+          <div className="mt-5 w-full max-w-[200px]">
             <Button
               type="submit"
               className="text-16 w- bg-orange-1 py-4 font-bold text-white-1"
@@ -70,7 +70,7 @@ const GenerateThumbnail = ({
                 "Generate"
               )}
             </Button>
-          </div> */}
+          </div>
         </div>
       ) : (
         <div></div>
