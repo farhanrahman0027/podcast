@@ -8,6 +8,7 @@ import { Textarea } from "../ui/textarea";
 import { Loader } from "lucide-react";
 import { GenerateThumbnailProps } from "@/types";
 import { Input } from "../ui/input";
+import Image from "next/image";
 
 const GenerateThumbnail = ({
   setImage,
@@ -79,6 +80,16 @@ const GenerateThumbnail = ({
       ) : (
         <div className="image_div" onClick={() => imageRef?.current?.click()}>
           <Input type="file" className="hidden" ref={imageRef} />
+          {!isImageLoading ? (
+            <Image
+              src="/icons/upload-image.svg"
+              alt="upload"
+              width={40}
+              height={40}
+            />
+          ) : (
+            <div></div>
+          )}
         </div>
       )}
     </>
