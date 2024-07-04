@@ -32,7 +32,11 @@ const SimilarPodcasts = ({ podcastId }: { podcastId: Id<"podcasts"> }) => {
         </div>
       ) : (
         <>
-          <EmptyState />
+          <EmptyState
+            title="No similar podcasts found"
+            buttonLink="/discover"
+            buttonText="Discover more podcasts"
+          />
         </>
       )}
     </section>
