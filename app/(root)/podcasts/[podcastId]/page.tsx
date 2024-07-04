@@ -1,6 +1,7 @@
 "use client";
 
 import PodcastDetailPlayer from "@/components/shared/PodcastDetailPlayer";
+import SimilarPodcasts from "@/components/shared/SimilarPodcasts";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
@@ -51,6 +52,8 @@ const PodcastDetails = ({
           </div>
         )}
       </div>
+
+      <SimilarPodcasts podcast={podcast!} podcastId={podcastId} />
     </section>
   );
 };
