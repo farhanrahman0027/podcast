@@ -1,5 +1,6 @@
 "use client";
 
+import PodcastDetailPlayer from "@/components/shared/PodcastDetailPlayer";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
@@ -26,6 +27,12 @@ const PodcastDetails = ({
           <h2 className="text-16 font-bold text-white-1">{podcast?.views}</h2>
         </figure>
       </header>
+
+      <PodcastDetailPlayer />
+
+      <p className="text-white-2 text-16 pb-8 pt-[45px] font-medium max-md:text-center">
+        {podcast?.podcastDescription}
+      </p>
     </section>
   );
 };
