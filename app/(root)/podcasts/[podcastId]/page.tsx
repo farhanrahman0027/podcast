@@ -1,5 +1,6 @@
 "use client";
 
+import LoaderSpinner from "@/components/shared/LoaderSpinner";
 import PodcastDetailPlayer from "@/components/shared/PodcastDetailPlayer";
 import SimilarPodcasts from "@/components/shared/SimilarPodcasts";
 import { api } from "@/convex/_generated/api";
@@ -13,6 +14,12 @@ const PodcastDetails = ({
   params: { podcastId: Id<"podcasts"> };
 }) => {
   const podcast = useQuery(api.podcasts.getPodcastById, { podcastId });
+
+  const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, {
+    podcastId,
+  });
+
+  if (!similarPodcasts || !podcast) return <LoaderSpinner />;
 
   return (
     <section className="flex w-full flex-col">
@@ -53,7 +60,7 @@ const PodcastDetails = ({
         )}
       </div>
 
-      <SimilarPodcasts podcast={podcast!} podcastId={podcastId} />
+      <SimilarPodcasts podcastId={podcastId} />
     </section>
   );
 };
