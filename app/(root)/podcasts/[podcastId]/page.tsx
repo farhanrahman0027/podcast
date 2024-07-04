@@ -41,6 +41,15 @@ const PodcastDetails = ({
             {podcast?.voicePrompt}
           </p>
         </div>
+
+        {podcast?.imagePrompt && (
+          <div className="flex flex-col gap-4">
+            <h1 className="text-18 font-bold text-white-1">Thumbnail Prompt</h1>
+            <p className="text-16 font-medium text-white-2">
+              {podcast?.imagePrompt}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
