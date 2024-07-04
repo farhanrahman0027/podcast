@@ -5,6 +5,7 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import LoaderSpinner from "./LoaderSpinner";
 import PodcastCard from "./PodcastCard";
+import EmptyState from "./EmptyState";
 
 const SimilarPodcasts = ({ podcastId }: { podcastId: Id<"podcasts"> }) => {
   const similarPodcasts = useQuery(api.podcasts.getPodcastByVoiceType, {
@@ -30,7 +31,9 @@ const SimilarPodcasts = ({ podcastId }: { podcastId: Id<"podcasts"> }) => {
           )}
         </div>
       ) : (
-        <>EMPTY</>
+        <>
+          <EmptyState />
+        </>
       )}
     </section>
   );
