@@ -1,6 +1,7 @@
 "use client";
 
 import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
+import Image from "next/image";
 import Link from "next/link";
 
 const RightSidebar = () => {
@@ -16,6 +17,12 @@ const RightSidebar = () => {
             <h1 className="text-16 truncate font-semibold text-white-1">
               {user?.firstName} {user?.lastName}
             </h1>
+            <Image
+              src="/icons/right-arrow.svg"
+              alt="arrow"
+              width={24}
+              height={24}
+            />
           </div>
         </Link>
       </SignedIn>
