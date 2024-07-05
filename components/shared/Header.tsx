@@ -9,7 +9,7 @@ const Header = ({
   titleClassName?: string;
 }) => {
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex items-center justify-between mb-2">
       {headerTitle ? (
         <h1 className={cn("text-18 font-bold text-white-1", titleClassName)}>
           {headerTitle}
