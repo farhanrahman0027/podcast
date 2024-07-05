@@ -8,11 +8,14 @@ import Carousel from "./Carousel";
 import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
+import LoaderSpinner from "./LoaderSpinner";
 
 const RightSidebar = () => {
   const router = useRouter();
   const { user } = useUser();
   const topPodcasters = useQuery(api.users.getTopUserByPodcastCount);
+
+  if (!topPodcasters) return <LoaderSpinner />;
 
   return (
     <section className="right_sidebar text-white-1">
@@ -56,7 +59,16 @@ const RightSidebar = () => {
                   height={44}
                   className="aspect-square rounded-lg"
                 />
+                <h2 className="text-14 font-semibold text-white-1">
+                  {podcaster.name}
+                </h2>
               </figure>
+
+              <div className="flex items-center">
+                <p className="text-12 font-normal">
+                  {podcaster.totalPodcasts} podcasts
+                </p>
+              </div>
             </div>
           ))}
         </div>
