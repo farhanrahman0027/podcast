@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { useAudio } from "@/providers/AudioProvider";
 import { Progress } from "../ui/progress";
 import { useState } from "react";
+import Image from "next/image";
 
 const PodcastPlayer = () => {
   const { audio } = useAudio();
@@ -17,10 +18,19 @@ const PodcastPlayer = () => {
       })}
     >
       <h1 className="text-white-1 text-xl">{audio?.title}</h1>
+
       <Progress
         value={(currentTime / duration) * 100}
         className="w-full"
         max={duration}
+      />
+
+      <Image
+        src={audio?.imageUrl!}
+        alt="player"
+        width={64}
+        height={64}
+        className="aspect-square rounded-xl"
       />
     </div>
   );
