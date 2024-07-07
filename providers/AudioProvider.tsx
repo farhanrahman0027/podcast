@@ -21,13 +21,13 @@ const AudioProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// export const useAudio = () => {
-//   const context = useContext(AudioContext);
+export const useAudio = () => {
+  const context = useContext(AudioContext);
 
-//   if (!context)
-//     throw new Error("useAudio must be used within an AudioProvider");
+  if (!context)
+    throw new Error("useAudio must be used within an AudioProvider");
 
-//   return context;
-// };
+  return context;
+};
 
 export default AudioProvider;
