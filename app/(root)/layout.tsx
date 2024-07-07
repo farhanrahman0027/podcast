@@ -1,5 +1,6 @@
 import LeftSidebar from "@/components/shared/LeftSidebar";
 import MobileNav from "@/components/shared/MobileNav";
+import PodcastPlayer from "@/components/shared/PodcastPlayer";
 import RightSidebar from "@/components/shared/RightSidebar";
 import { Toaster } from "@/components/ui/toaster";
 import Image from "next/image";
@@ -36,6 +37,8 @@ export default function RootLayout({
 
         <RightSidebar />
       </main>
+
+      <PodcastPlayer />
     </div>
   );
 }
