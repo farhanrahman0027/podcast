@@ -32,6 +32,8 @@ const PodcastPlayer = () => {
         height={64}
         className="aspect-square rounded-xl"
       />
+
+      <h1 className="text-white-1 text-xl">{audio?.author}</h1>
     </div>
   );
 };
