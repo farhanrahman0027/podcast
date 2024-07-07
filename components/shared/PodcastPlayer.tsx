@@ -7,8 +7,8 @@ import { useState } from "react";
 
 const PodcastPlayer = () => {
   const { audio } = useAudio();
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(10);
+  const [duration, setDuration] = useState(100);
 
   return (
     <div
