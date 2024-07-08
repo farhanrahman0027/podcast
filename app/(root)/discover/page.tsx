@@ -7,8 +7,14 @@ import Searchbar from "@/components/shared/Searchbar";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 
-const Discover = () => {
-  const podcastData = useQuery(api.podcasts.getPodcastBySearch, { search: "" });
+const Discover = ({
+  searchParams: { search },
+}: {
+  searchParams: { search: string };
+}) => {
+  const podcastData = useQuery(api.podcasts.getPodcastBySearch, {
+    search: search || "",
+  });
 
   return (
     <div className="flex flex-col gap-9">
