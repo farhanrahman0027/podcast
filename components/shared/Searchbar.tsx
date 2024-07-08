@@ -1,10 +1,33 @@
+"use client";
+
 import Image from "next/image";
 import { Input } from "../ui/input";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const Searchbar = () => {
+  const [search, setSearch] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (search) {
+      router.push(`/discover?search=${search}`);
+    } else if (!search && pathname === "/discover") {
+      router.push("/discover");
+    }
+  }, [router, pathname, search]);
+
   return (
     <div className="relative mt-8 block">
-      <Input />
+      <Input
+        className="input-class py-6 pl-12 focus-visible:ring-offset-orange-1"
+        placeholder="Search for podcasts"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        onLoad={() => setSearch("")}
+      />
+
       <Image
         src="/icons/search.svg"
         alt="search"
