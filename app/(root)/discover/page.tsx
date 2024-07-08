@@ -3,6 +3,7 @@
 import EmptyState from "@/components/shared/EmptyState";
 import LoaderSpinner from "@/components/shared/LoaderSpinner";
 import PodcastCard from "@/components/shared/PodcastCard";
+import Searchbar from "@/components/shared/Searchbar";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 
@@ -11,7 +12,8 @@ const Discover = () => {
 
   return (
     <div className="flex flex-col gap-9">
-      Searchbar...
+      <Searchbar />
+
       <div className="flex flex-col gap-9">
         <h1 className="text-20 font-bold text-white-1">Discover</h1>
 
